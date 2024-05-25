@@ -1,7 +1,20 @@
 package com.anshabunin.newsapi.models
 
+import com.anshabunin.newsapi.utils.DateTimeUTCSerializer
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import java.util.Date
 
 @Serializable
-class Article {
-}
+data class Article (
+    @SerialName("source") val source: Source,
+    @SerialName("author") val author: String,
+    @SerialName("title") val title: String,
+    @SerialName("description") val description: String,
+    @SerialName("url") val url: String,
+    @SerialName("urlToImage") val urlToImage: String,
+    @SerialName("publishedAt")
+    @Serializable(with = DateTimeUTCSerializer::class)
+    val publishedAt: Date,
+    @SerialName("content") val content: String
+)
